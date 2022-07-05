@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		div#googleMap {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+
+	<center>
+		<h2>찾아오시는 길</h2>
+		<div id="googleMap" style="width: 500px; height: 500px;"></div>
+		<br>
+		<br>
+		<h4>청와 리조트</h4>
+		주소[13590] 경기도 성남시 분당구 황새울로 329번길 5(서현동 272-6)
+	</center>
+	
+	
+	
+	
+	<script>
+		function myMap(){
+		  	const loc = new google.maps.LatLng(37.3858, 127.1213);
+			const mapOptions = { 
+	            center: loc,
+	            zoom:18
+	      	};
+	 
+			const map = new google.maps.Map( 
+	             document.getElementById("googleMap") 
+	            , mapOptions );
+	      
+	      	const marker = new google.maps.Marker({
+	    	    position: loc,
+	    	    map: map,
+	    	    title: "hello"
+	   	  	});
+		}
+		window,initmap = myMap;
+	</script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtN8hyR8gcVGb2x2bOFgsdvhf-kO9QhFM&callback=myMap"></script>
+</body>
+</html>

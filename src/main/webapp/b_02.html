@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		div#googleMap {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+
+	<center>
+		<h2>찾아오시는 길</h2>
+		<div id="googleMap" style="width: 500px; height: 500px;"></div>
+		<br>
+		<br>
+		<h4>대중교통 이용시</h4>
+		<p>
+			지하철<br>
+			<indent>수인분당선 서현역 4번 출구(AK프라자 2번 게이트)에서 성남교육지원청 방향으로 도보 3분<br><br><br>
+			버스<br>
+			<indent>광역 3500 이용시<br>
+			<indent><indent>서현역·분당우체국 정류장(분당구청후문 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분<br>
+			<indent>광역 3500, 마을 32, 74, 602 이용 시<br>
+			<indent><indent>서현역·분당우체국 정류장(이매촌 한신.서현역.AK프라자 방면) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분<br>
+		</p>
+	</center>
+	
+	
+	
+	
+	<script>
+		function myMap(){
+		  	const loc = new google.maps.LatLng(37.3858, 127.1213);
+			const mapOptions = { 
+	            center: loc,
+	            zoom:18
+	      	};
+	 
+			const map = new google.maps.Map( 
+	             document.getElementById("googleMap") 
+	            , mapOptions );
+	      
+	      	const marker = new google.maps.Marker({
+	    	    position: loc,
+	    	    map: map,
+	    	    title: "hello"
+	   	  	});
+		}
+		window,initmap = myMap;
+	</script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtN8hyR8gcVGb2x2bOFgsdvhf-kO9QhFM&callback=myMap"></script>
+</body>
+</html>
