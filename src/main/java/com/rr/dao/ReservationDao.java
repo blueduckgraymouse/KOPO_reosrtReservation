@@ -96,4 +96,47 @@ public class ReservationDao {
 		
 		return result;
 	}
+	
+	public int updateReservation(Connection conn, OneReservation oneReservation) {
+		String sql = "update resortresv set name=?, addr=?, telnum=?, in_name=?, comment=?, processing=? where resv_date=? and room=?";
+		int result = 0;
+		try (
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+			) {
+			pstmt.setString(1, oneReservation.getName());
+			pstmt.setString(2, oneReservation.getAddr());
+			pstmt.setString(3, oneReservation.getTelnum());
+			pstmt.setString(4, oneReservation.getIn_name());
+			pstmt.setString(5, oneReservation.getComment());
+			pstmt.setInt(6, oneReservation.getProcessing());
+			
+			pstmt.setString(7, oneReservation.getResv_date());
+			pstmt.setInt(8, oneReservation.getRoom());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new IllegalStateException("db 연결 실패" + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	public int deleteReservation(Connection conn, String date, String room) {
+		String sql = "delete from resortresv where resv_date=? and room=?";
+		int result = 0;
+		try (
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+			) {
+			pstmt.setString(1, date);
+			pstmt.setString(2, room);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new IllegalStateException("db 연결 실패" + e.getMessage());
+		}
+		
+		return result;
+	}
 }

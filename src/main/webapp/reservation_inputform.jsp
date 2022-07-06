@@ -5,15 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	
-</style>
+	<style>
+		table {
+			width: 400px;
+		}
+		tr, th, td {
+			border: 1px solid black;
+			text-align: center;
+		}
+		th {
+			background-color: #6791be;
+		}
+	</style>
 </head>
 <body onload="init();">
 	<center>
 		<h2>예약하기</h2>
 		<br>
-		<form method="post" action="./reservation.rr">
+		<form method="post" action="./userReservation.rr">
 			<table>
 				<tr>
 					<th>성명</th>

@@ -41,7 +41,6 @@ public class ReservationService {
 			
 			while (CalFirst.before(CalAfterAMonth)) {
 				OneDay oneDay = reservationDao.selectDay(conn, sdf.format(CalFirst.getTime()));
-				System.out.println(oneDay.toString());
 				monthReservation.add(oneDay);
 				CalFirst.add(Calendar.DATE, 1);
 			}
@@ -56,7 +55,9 @@ public class ReservationService {
 	
 	
 	
-	public OneReservation getOneReservation(String roomNumber, String date) {
+	public OneReservation getOneReservation(HttpServletRequest req) {
+		String date = req.getParameter("date");
+		String roomNumber = req.getParameter("room");
 		OneReservation oneReservation =  null;
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/kopoctc", "root", "abcd1234");
@@ -101,6 +102,47 @@ public class ReservationService {
 		}
 	}
 	
+	
+	public void updateReservation(HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/kopoctc", "root", "abcd1234");
+			OneReservation oneReservation = new OneReservation(
+											req.getParameter("name"),
+											req.getParameter("date"),
+											Integer.parseInt(req.getParameter("room")),
+											req.getParameter("addr"),
+											req.getParameter("tel"),
+											req.getParameter("in_name"),
+											req.getParameter("comment"),
+											Integer.parseInt(req.getParameter("processing"))
+										);
+			reservationDao.updateReservation(conn, oneReservation);
+		} catch (Exception e) {
+			throw new IllegalStateException("dao메서드 호출 실패" + e.getMessage());
+		} finally {
+			close(conn);
+		}
+	}
+	
+	public void deleteReservation(HttpServletRequest req) {
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/kopoctc", "root", "abcd1234");
+			String date = req.getParameter("date");
+			String roomNumber = req.getParameter("room");
+			reservationDao.deleteReservation(conn, date, roomNumber);
+		} catch (Exception e) {
+			throw new IllegalStateException("dao메서드 호출 실패" + e.getMessage());
+		} finally {
+			close(conn);
+		}
+	}
 	
 	
 	/* 파라미터로 들어온 connection의 트렌젝션을 rollback하는 메서드 */

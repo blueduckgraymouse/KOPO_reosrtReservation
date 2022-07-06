@@ -66,8 +66,8 @@
 						</c:when>
 						<c:otherwise> 
 							<c:choose>
-							    <c:when test="${sessionScope.userid eq 'admin'}">
-									<td><a class="reserved" href="./admin.rr?room=1&date=${oneDay.date}">${oneDay.room1}</a></td>
+							    <c:when test="${sessionScope.authUser eq 'true'}">
+									<td><a class="reserved" href="./serReservation.rr?room=1&date=${oneDay.date}">${oneDay.room1}</a></td>
 							    </c:when>
 							    <c:otherwise>
 									<td>${oneDay.room1}</td>
@@ -83,8 +83,8 @@
 						</c:when>
 						<c:otherwise> 
 							<c:choose>
-							    <c:when test="${sessionScope.userid eq 'admin'}">
-									<td><a class="reserved" href="./admin.rr?room=1&date=${oneDay.date}">${oneDay.room2}</a></td>
+							    <c:when test="${sessionScope.authUser eq 'true'}">
+									<td><a class="reserved" href="./userReservation.rr?room=2&date=${oneDay.date}">${oneDay.room2}</a></td>
 							    </c:when>
 							    <c:otherwise>
 									<td>${oneDay.room2}</td>
@@ -100,8 +100,8 @@
 						</c:when>
 						<c:otherwise> 
 							<c:choose>
-							    <c:when test="${sessionScope.userid eq 'admin'}">
-									<td><a class="reserved" href="./admin.rr?room=1&date=${oneDay.date}">${oneDay.room3}</a></td>
+							    <c:when test="${sessionScope.authUser eq 'true'}">
+									<td><a class="reserved" href="./userReservation.rr?room=3&date=${oneDay.date}">${oneDay.room3}</a></td>
 							    </c:when>
 							    <c:otherwise>
 									<td>${oneDay.room3}</td>
